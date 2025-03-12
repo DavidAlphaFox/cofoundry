@@ -22,7 +22,7 @@ public class ImageAssetFileCommandHelper
         _imageAssetFileService = imageAssetFileService;
         _fileStoreService = fileStoreService;
     }
-
+    //异步保存文件的操作
     public async Task SaveFileAsync(IFileSource fileToSave, ImageAsset imageAsset, string validationErrorPropertyName)
     {
         var extension = Path.GetExtension(fileToSave.FileName);

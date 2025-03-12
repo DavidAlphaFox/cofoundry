@@ -43,7 +43,7 @@ public class AddImageAssetCommandHandler
         _mimeTypeService = mimeTypeService;
         _imageAssetFileCommandHelper = imageAssetFileCommandHelper;
     }
-
+    // 异步图片文件，通过DI注入来进行解耦
     public async Task ExecuteAsync(AddImageAssetCommand command, IExecutionContext executionContext)
     {
         ValidateFileType(command);

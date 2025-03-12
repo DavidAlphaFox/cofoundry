@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Reflection;
 
@@ -163,7 +163,7 @@ public class ApiResponseHelper : IApiResponseHelper
                 return NotPermittedResponse(ex);
             }
         }
-
+        //获取操作结果，然后进行返回
         var outputValue = GetCommandOutputValue(command);
 
         if (outputValue != null)
