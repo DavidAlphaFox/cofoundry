@@ -121,14 +121,14 @@ public class DefaultContainerRegister : IContainerRegister
 
         return this;
     }
-
+    //直接将实现通用接口的handler全部自动化注册一遍
     public IContainerRegister RegisterAllGenericImplementations(Type typeDef, RegistrationOptions? options = null)
     {
         if (!typeDef.GetTypeInfo().IsGenericTypeDefinition)
         {
             throw new ArgumentException("Type should be generic", nameof(typeDef));
         }
-
+        //得到interface的所有实现
         var handlerRegistrations =
             from implementation in GetDiscoveredConcreteTypes()
             let services =
