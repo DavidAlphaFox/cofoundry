@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace Cofoundry.Web;
 
@@ -9,7 +9,7 @@ namespace Cofoundry.Web;
 public class FormFileSource : IFileSource
 {
     private readonly IFormFile _formFile;
-
+    //通过HTTP文件上传，IFormFile是Microsoft.AspNetCore.Http中的成员
     public FormFileSource(IFormFile formFile)
     {
         ArgumentNullException.ThrowIfNull(formFile);

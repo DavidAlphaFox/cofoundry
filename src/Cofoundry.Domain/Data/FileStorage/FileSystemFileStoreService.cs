@@ -1,4 +1,4 @@
-﻿namespace Cofoundry.Domain.Data.Internal;
+namespace Cofoundry.Domain.Data.Internal;
 
 /// <summary>
 /// File storage abstraction using the file system
@@ -146,7 +146,7 @@ public class FileSystemFileStoreService : IFileStoreService
         {
             Directory.CreateDirectory(dir);
         }
-
+        //从文件中将流异步的存入磁盘
         using (var fs = new FileStream(path, fileMode))
         {
             stream.Position = 0;

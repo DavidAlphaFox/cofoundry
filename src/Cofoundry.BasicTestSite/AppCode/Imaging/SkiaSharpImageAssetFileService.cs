@@ -10,7 +10,7 @@ namespace Cofoundry.Plugins.Imaging.SkiaSharp;
 /// SkiaSharp implementation of <see cref="IImageAssetFileService"/>.
 /// </summary>
 public class SkiaSharpImageAssetFileService : IImageAssetFileService
-{
+{    //使用SkiaSharp来保存图片文件
     private const string ASSET_FILE_CONTAINER_NAME = "Images";
 
     private static readonly Dictionary<SKEncodedImageFormat, string> _permittedFormats = new()
@@ -48,7 +48,7 @@ public class SkiaSharpImageAssetFileService : IImageAssetFileService
         ImageAsset imageAsset,
         string validationErrorPropertyName
         )
-    {
+    {   //将文件从流中读出
         using var fileSource = ImageFileSource.Load(await fileToSave.OpenReadStreamAsync());
 
         ValidateCodec(fileSource.Codec, fileToSave, validationErrorPropertyName);

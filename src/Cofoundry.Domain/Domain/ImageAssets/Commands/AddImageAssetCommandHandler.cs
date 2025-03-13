@@ -47,7 +47,7 @@ public class AddImageAssetCommandHandler
     public async Task ExecuteAsync(AddImageAssetCommand command, IExecutionContext executionContext)
     {
         ValidateFileType(command);
-
+        //创建新的ImageAsset的附件记录
         var imageAsset = new ImageAsset
         {
             Title = command.Title,
@@ -58,12 +58,12 @@ public class AddImageAssetCommandHandler
             FileExtension = "unknown",
             VerificationToken = _randomStringGenerator.Generate(6)
         };
-
+        // 得到一个文件的时间戳
         var fileStamp = AssetFileStampHelper.ToFileStamp(imageAsset.FileUpdateDate);
 
         _entityTagHelper.UpdateTags(imageAsset.ImageAssetTags, command.Tags, executionContext);
         _entityAuditHelper.SetCreated(imageAsset, executionContext);
-
+        // 存入数据库记录
         _dbContext.ImageAssets.Add(imageAsset);
 
         using (var scope = _transactionScopeManager.Create(_dbContext))

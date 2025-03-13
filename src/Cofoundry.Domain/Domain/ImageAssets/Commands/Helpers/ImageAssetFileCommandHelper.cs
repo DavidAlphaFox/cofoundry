@@ -24,13 +24,13 @@ public class ImageAssetFileCommandHelper
     }
     //异步保存文件的操作
     public async Task SaveFileAsync(IFileSource fileToSave, ImageAsset imageAsset, string validationErrorPropertyName)
-    {
+    {   //获取文件的扩展名
         var extension = Path.GetExtension(fileToSave.FileName);
 
         // Svg files are handled differently to other image files because
         // they are just xml files with no special handling needed
         if (extension[1..] == ImageAssetConstants.SvgFileExtension)
-        {
+        {   //range operator x..y. It allows us to slice the elements between index ‘x’ and index ‘y’; index ‘y’ not included
             var fileName = Path.ChangeExtension(imageAsset.FileNameOnDisk, ImageAssetConstants.SvgFileExtension);
             using var svgStream = await fileToSave.OpenReadStreamAsync();
 
