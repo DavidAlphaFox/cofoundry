@@ -23,10 +23,10 @@ public static class AddCofoundryStartupExtension
         var cofoundryConfig = new AddCofoundryStartupConfiguration();
         configBuilder?.Invoke(cofoundryConfig);
         mvcBuilder = EnsureCoreMVCServicesAdded(mvcBuilder);
-
+        
         AddAdditionalTypes(mvcBuilder);
-        DiscoverAdditionalApplicationParts(mvcBuilder, cofoundryConfig);
-
+        DiscoverAdditionalApplicationParts(mvcBuilder, cofoundryConfig); //发现Application的插件
+        //设置TypesProvider
         var typesProvider = new DiscoveredTypesProvider(mvcBuilder.PartManager);
         var builder = new DefaultContainerBuilder(mvcBuilder.Services, typesProvider, configuration);
         builder.Build();

@@ -236,8 +236,9 @@ public class DefaultContainerRegister : IContainerRegister
        RegistrationOptions? options = null
        )
     {
+        //得到生命周期，默认的生命周期是InstanceLifetime.Transient
         var lifetime = ConvertToServiceLifetime(options);
-
+      
         var descriptor = new ServiceDescriptor(serviceType, implementationType, lifetime);
         _serviceCollection.Add(descriptor);
     }
@@ -248,8 +249,9 @@ public class DefaultContainerRegister : IContainerRegister
        RegistrationOptions? options = null
         )
     {
+      
         var lifetime = ConvertToServiceLifetime(options);
-
+        
         var descriptor = new ServiceDescriptor(serviceType, implementationFactory, lifetime);
         _serviceCollection.Add(descriptor);
     }

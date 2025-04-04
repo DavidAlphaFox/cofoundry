@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cofoundry.Core.DependencyInjection;
@@ -26,12 +26,12 @@ public class DefaultContainerBuilder : IContainerBuilder
         _discoveredTypesProvider = discoveredTypesProvider;
         _configurationRoot = configurationRoot;
     }
-
+    //构建默认的容器
     public void Build()
     {
         CheckIsBuilt();
         RegisterFramework();
-
+        
         var containerRegister = new DefaultContainerRegister(
             _discoveredTypesProvider,
             _serviceCollection,
