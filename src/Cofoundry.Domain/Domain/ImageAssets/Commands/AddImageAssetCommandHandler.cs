@@ -73,7 +73,7 @@ public class AddImageAssetCommandHandler
 
             // Update the disk filename
             imageAsset.FileNameOnDisk = $"{imageAsset.ImageAssetId}-{fileStamp}";
-
+            // 更新存盘文件的名字
             await _imageAssetFileCommandHelper.SaveFileAsync(command.File, imageAsset, nameof(command.File));
 
             command.OutputImageAssetId = imageAsset.ImageAssetId;
