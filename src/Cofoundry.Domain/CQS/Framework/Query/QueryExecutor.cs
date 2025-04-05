@@ -1,4 +1,4 @@
-﻿using Cofoundry.Core.Reflection.Internal;
+using Cofoundry.Core.Reflection.Internal;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 
@@ -48,6 +48,7 @@ public class QueryExecutor : IQueryExecutor
 
         try
         {
+            //任务泛化
             var task = _executeAsyncMethod
                 .MakeGenericMethod(query.GetType(), typeof(TResult))
                 .Invoke(this, [query, executionContext]) as Task<TResult>;
@@ -56,7 +57,7 @@ public class QueryExecutor : IQueryExecutor
             {
                 throw new InvalidCastException($"Expected {_executeAsyncMethod.Name} to return a Task but found null.");
             }
-
+            //等待执行结果
             result = await task;
         }
         catch (TargetInvocationException ex)
@@ -124,6 +125,13 @@ public class QueryExecutor : IQueryExecutor
         info.Throw();
 
         // compiler requires assignment
-        return default;
+        return default; // 等价于 return default(T);
     }
+    /*
+     *default 关键字用于获取类型的默认值：
+     *  引用类型（如 class、string、object）的默认值是 null。
+     *  值类型（如 int、double、struct）的默认值是 0 或一个所有字段为默认值的实例。
+     *  枚举类型的默认值是 0（即使枚举没有定义对应的成员）。
+     *  可为空的类型（如 int?）的默认值是 null。
+     */
 }

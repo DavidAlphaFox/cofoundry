@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cofoundry.Domain.CQS.Internal;
 
@@ -19,6 +19,7 @@ public class CommandHandlerFactory : ICommandHandlerFactory
     /// <inheritdoc/>
     public ICommandHandler<T> CreateAsyncHandler<T>() where T : ICommand
     {
+        //使用service provider创建全新的CommandHandler
         return _serviceProvider.GetRequiredService<ICommandHandler<T>>();
     }
 }

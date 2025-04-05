@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
 namespace Cofoundry.Core.Reflection.Internal;
 
@@ -13,7 +13,7 @@ public class MethodReferenceHelper
     /// <typeparam name="TContainerClass">The type containing the method.</typeparam>
     public static MethodInfo GetPrivateInstanceMethod<TContainerClass>(string methodName)
         where TContainerClass : class
-    {
+    {   //获取某个类的执行方法
         var methodInfo = typeof(TContainerClass).GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
 
         if (methodInfo == null)
