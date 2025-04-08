@@ -3,6 +3,7 @@ namespace Cofoundry.Domain.Data.Internal;
 /// <summary>
 /// File storage abstraction using the file system
 /// </summary>
+//文件存储服务实现
 public class FileSystemFileStoreService : IFileStoreService
 {
     private readonly Lazy<string> _fileRoot;
@@ -141,7 +142,7 @@ public class FileSystemFileStoreService : IFileStoreService
         {
             throw new InvalidOperationException($"Could not make a valid directory path from {path}");
         }
-
+        //目录不存在，就创建新的目录
         if (!Directory.Exists(dir))
         {
             Directory.CreateDirectory(dir);

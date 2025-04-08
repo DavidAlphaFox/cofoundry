@@ -6,7 +6,7 @@ namespace Cofoundry.Domain.Internal;
 
 /// <summary>
 /// <para>
-/// Processes a batch of items in the asset file cleanup 
+/// Processes a batch of items in the asset file cleanup
 /// queue, deleting any asset files associated with the queue
 /// items. If any errors occur then the item is re-queued to
 /// try again later.
@@ -149,7 +149,7 @@ public class CleanUpAssetFilesCommandHandler
     }
 
     private Task<List<AssetFileCleanupQueueItem>> GetQueueBatch(int batchSize, IExecutionContext executionContext)
-    {
+    {   //从数据库中找出所有需要删除的数据
         return _dbContext
             .AssetFileCleanupQueueItems
             .Where(i => !i.CompletedDate.HasValue && i.CanRetry && i.AttemptPermittedDate < executionContext.ExecutionDate)

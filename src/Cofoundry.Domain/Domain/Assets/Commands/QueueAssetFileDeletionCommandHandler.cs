@@ -30,7 +30,7 @@ public class QueueAssetFileDeletionCommandHandler
             AttemptPermittedDate = executionContext.ExecutionDate,
             CreateDate = executionContext.ExecutionDate
         };
-
+        //在数据库中记录需要删除的资源文件
         _dbContext.AssetFileCleanupQueueItems.Add(queueItem);
         await _dbContext.SaveChangesAsync();
     }

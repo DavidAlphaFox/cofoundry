@@ -1,7 +1,7 @@
 ﻿using Cofoundry.Core.BackgroundTasks;
 
 namespace Cofoundry.Domain.BackgroundTasks;
-
+//对资源文件进行清理的异步任务
 public class AssetFileCleanupBackgroundTask : IAsyncRecurringBackgroundTask
 {
     private readonly ICommandExecutor _commandExecutor;
