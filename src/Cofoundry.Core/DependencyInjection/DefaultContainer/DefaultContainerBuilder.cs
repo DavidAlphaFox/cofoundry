@@ -31,14 +31,14 @@ public class DefaultContainerBuilder : IContainerBuilder
     {
         CheckIsBuilt();
         RegisterFramework();
-        
+
         var containerRegister = new DefaultContainerRegister(
             _discoveredTypesProvider,
             _serviceCollection,
             this,
             _configurationRoot
             );
-
+        //获得所有注册器，然后遍历注册器，注册所有的功能
         var registrations = GetAllRegistrations();
         foreach (var registration in registrations)
         {
@@ -55,7 +55,7 @@ public class DefaultContainerBuilder : IContainerBuilder
         {
             var existingOverride = value;
 
-            // Don't allow the registrations with the same priority, but do 
+            // Don't allow the registrations with the same priority, but do
             // replace lower priority registrations
             if (existingOverride.Priority == priority)
             {
